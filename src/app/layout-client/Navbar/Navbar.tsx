@@ -30,7 +30,7 @@ export const Navbar = ({ user }: Session) => {
               Log In
             </Button>
           ) : (
-            <User />
+            <User {...user} />
           )}
         </Flex>
       </Container>

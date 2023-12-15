@@ -12,24 +12,17 @@ import {
 import { FaCaretDown } from "react-icons/fa";
 import { signOut, useSession } from "next-auth/react";
 import { Styled } from "./User.styles";
+import { Session } from "next-auth";
 
-export const User = () => {
-  const { data } = useSession();
-
-  if (!data?.user) {
-    return;
-  }
-
-  const { user } = data;
-
+export const User = (user: Session['user']) => {
   return (
     <Menu>
       <Styled.MenuButton>
         <Wrap align={"center"}>
           <WrapItem>
             <Avatar
-              name={user.name ?? ""}
-              src={user.image ?? ""}
+              name={user!.name ?? ""}
+              src={user!.image ?? ""}
               size={{ base: "sm", lg: "md" }}
             />
           </WrapItem>
