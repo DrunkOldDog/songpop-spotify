@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { User } from "./User";
 import { FaSpotify } from "react-icons/fa";
 import { Session } from "next-auth";
+import { Spotify } from "@/app/assets/icons";
 
 export const Navbar = ({ user }: Session) => {
   const { push } = useRouter();
@@ -19,12 +20,7 @@ export const Navbar = ({ user }: Session) => {
           height="100%"
         >
           <Box cursor={"pointer"} onClick={() => push("/")}>
-            <Icon
-              as={FaSpotify}
-              fill="#fff"
-              width={{ base: "26px", lg: "40px" }}
-              height={{ base: "26px", lg: "40px" }}
-            />
+            <Spotify fill="#fff" height={{ base: "26px", lg: "40px" }} />
           </Box>
           {!user ? (
             <Button
