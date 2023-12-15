@@ -22,6 +22,7 @@ export const Navbar = ({ user }: Session) => {
             <Icon
               as={FaSpotify}
               fill="#fff"
+              width={{ base: "26px", lg: "40px" }}
               height={{ base: "26px", lg: "40px" }}
             />
           </Box>
