@@ -2,21 +2,20 @@
 
 import { Button, Input } from "@chakra-ui/react";
 import { FormEventHandler, useRef } from "react";
-
-import type { CreateGameBody } from "@/app/types";
-import axios from "axios";
-import { SERVER } from "@/app/common/server";
+import { createGame } from "@/app/actions/createGame";
+import { getSession } from "next-auth/react";
 
 export const CreateGame = () => {
   const playlistInputRef = useRef<HTMLInputElement>(null);
 
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    const body: CreateGameBody = {
-      playlistId: playlistInputRef.current?.value ?? "",
-    };
 
-    const data = await axios.post(SERVER.CREATE_GAME, body);
+    const { user } = (await getSession()) || {};
+    const data = await createGame({
+      playlistId: playlistInputRef.current?.value ?? "",
+      userId: user!.userId,
+    });
     console.log({ data });
   };
 
