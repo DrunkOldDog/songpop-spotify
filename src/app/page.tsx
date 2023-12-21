@@ -1,6 +1,6 @@
 import { Container, Heading, Text } from "@chakra-ui/react";
 import { getServerSession } from "next-auth";
-import { CreateGame } from "./components/CreateGame";
+import { CreateGame } from "@/app/components/CreateGame";
 
 export default async function Home() {
   const data = await getServerSession();

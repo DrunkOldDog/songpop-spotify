@@ -1,8 +1,8 @@
 "use server";
 
 import { v4 as uuidv4 } from "uuid";
-import { client } from "@/app/lib/redis/db";
-import { CreateGame, GameStatus } from "@/app/common/types";
+import { client } from "@/lib/redis/db";
+import { CreateGame, GameStatus } from "@/common/types";
 import { redirect } from "next/navigation";
 
 type CreateGameFunc = (data: {

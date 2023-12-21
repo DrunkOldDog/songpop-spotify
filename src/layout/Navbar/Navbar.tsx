@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { User } from "./User";
 import { FaSpotify } from "react-icons/fa";
 import { Session } from "next-auth";
-import { Spotify } from "@/app/assets/icons";
+import { Spotify } from "@/assets/icons";
 
 export const Navbar = ({ user }: Session) => {
   const { push } = useRouter();
