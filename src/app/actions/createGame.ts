@@ -11,14 +11,15 @@ type CreateGameFunc = (data: {
 }) => Promise<void>;
 
 export const createGame: CreateGameFunc = async ({ playlistId, userId }) => {
-
   const data: CreateGame = {
     playlistId,
     createdBy: userId,
     gameStatus: GameStatus.Not_Started,
   };
 
-  await client.hSet(`games:${uuidv4()}`, data);
+  const gameId = uuidv4();
+  await client.hSet(`games:${gameId}`, data);
+  await client.expire(`games:${gameId}`, 60 * 30);
 
   redirect("/");
 };
