@@ -1,5 +1,5 @@
 import { getToken } from "next-auth/jwt";
-import type { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -8,10 +8,18 @@ export async function middleware(request: NextRequest) {
     return;
   }
 
-  const currentTime = new Date().getTime() / 1000;
-  if (token.exp <= currentTime) {
-    console.log("Should refresh token");
-  }
+  // Clone the request headers and set a new header `authorization`
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("authorization", `Bearer ${token.accessToken}`);
+
+  const resp = NextResponse.next({
+    request: {
+      headers: requestHeaders,
+    },
+  });
+
+  resp.headers.set("authorization", `Bearer ${token.accessToken}`);
+  return resp;
 }
 
 // Ensure the middleware is only called for relevant paths.
