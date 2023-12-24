@@ -6,7 +6,7 @@ interface IJWT {
   /**
    * Access token expiration time
    */
-  exp: number;
+  expiresAt: number | undefined;
 }
 
 declare module "next-auth" {
