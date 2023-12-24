@@ -2,8 +2,9 @@
 
 import { v4 as uuidv4 } from "uuid";
 import { client } from "@/lib/redis/db";
-import { CreateGame, GameStatus } from "@/common/types";
+import { Game, GameStatus } from "@/common/types";
 import { redirect } from "next/navigation";
+import { HOST } from "@/common/routes";
 
 type CreateGameFunc = (data: {
   playlistId: string;
@@ -11,7 +12,7 @@ type CreateGameFunc = (data: {
 }) => Promise<void>;
 
 export const createGame: CreateGameFunc = async ({ playlistId, userId }) => {
-  const data: CreateGame = {
+  const data: Game = {
     playlistId,
     createdBy: userId,
     gameStatus: GameStatus.Not_Started,
@@ -21,5 +22,5 @@ export const createGame: CreateGameFunc = async ({ playlistId, userId }) => {
   await client.hSet(`games:${gameId}`, data);
   await client.expire(`games:${gameId}`, 60 * 30);
 
-  redirect("/");
+  redirect(`${HOST}/${gameId}`);
 };
