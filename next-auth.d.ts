@@ -1,8 +1,8 @@
 import type { DefaultSession } from "next-auth";
 
 interface IJWT {
-  accessToken: string;
-  refreshToken: string;
+  accessToken: string | undefined;
+  refreshToken: string | undefined;
   /**
    * Access token expiration time
    */

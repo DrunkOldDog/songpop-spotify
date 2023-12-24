@@ -1,16 +1,19 @@
-import axios from "axios";
+import axios, { InternalAxiosRequestConfig } from "axios";
 
-const baseURL = process.env.NEXT_PUBLIC_API_URL,
-  isServer = typeof window === "undefined";
+const isServer = typeof window === "undefined";
 
-const axiosApi = axios.create({
-  baseURL,
+const mainAxios = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL + "/api",
+});
+
+const spotifyAxios = axios.create({
+  baseURL: process.env.SPOTIFY_API,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-axiosApi.interceptors.request.use(async (config) => {
+const authorizationInterceptor = async (config: InternalAxiosRequestConfig) => {
   if (isServer) {
     const { headers } = await import("next/headers"),
       authorization = headers().get("authorization");
@@ -21,6 +24,9 @@ axiosApi.interceptors.request.use(async (config) => {
   }
 
   return config;
-});
+};
 
-export default axiosApi;
+mainAxios.interceptors.request.use(authorizationInterceptor);
+spotifyAxios.interceptors.request.use(authorizationInterceptor);
+
+export { spotifyAxios, mainAxios };
