@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Navbar } from "@/layout";
 import { Session, getServerSession } from "next-auth";
 import { ChakraProvider } from "@/lib/chakra";
+import AuthProvider from "@/context/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,15 +17,17 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const data = await getServerSession();
+  const session = await getServerSession();
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ChakraProvider>
-          <Navbar {...(data ?? ({} as Session))} />
-          {children}
-        </ChakraProvider>
+        <AuthProvider>
+          <ChakraProvider>
+            <Navbar {...(session ?? ({} as Session))} />
+            {children}
+          </ChakraProvider>
+        </AuthProvider>
       </body>
     </html>
   );

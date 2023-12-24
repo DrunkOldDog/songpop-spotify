@@ -1,5 +1,7 @@
 import type { DefaultSession } from "next-auth";
 
+type JWTError = "RefreshAccessTokenError";
+
 interface IJWT {
   accessToken: string | undefined;
   refreshToken: string | undefined;
@@ -7,6 +9,7 @@ interface IJWT {
    * Access token expiration time
    */
   expiresAt: number | undefined;
+  error?: JWTError;
 }
 
 declare module "next-auth" {
@@ -16,6 +19,7 @@ declare module "next-auth" {
 
   interface Session extends DefaultSession {
     user?: User;
+    error?: JWTError;
   }
 }
 

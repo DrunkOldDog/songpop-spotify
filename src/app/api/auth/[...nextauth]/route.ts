@@ -15,6 +15,7 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async session({ session, token }) {
       if (session) {
+        session.error = token.error;
         session.user!.userId = token.sub ?? "";
       }
 
@@ -36,17 +37,22 @@ export const authOptions: NextAuthOptions = {
         return token;
       }
 
-      console.log("refreshing token...");
-      const { access_token, expires_in } = await refreshToken(
-        token.refreshToken as string
-      );
-      console.log("token refreshed:", access_token);
+      try {
+        console.log("refreshing token...");
+        const { access_token, expires_in } = await refreshToken(
+          token.refreshToken as string
+        );
 
-      return {
-        ...token,
-        accessToken: access_token,
-        expiresAt: Math.floor(Date.now() / 1000) + expires_in,
-      };
+        return {
+          ...token,
+          accessToken: access_token,
+          expiresAt: Math.floor(Date.now() / 1000) + expires_in,
+        };
+      } catch (error) {
+        console.error("Error refreshing access token", error);
+        // The error property will be used client-side to handle the refresh token error
+        return { ...token, error: "RefreshAccessTokenError" as const };
+      }
     },
   },
 };
