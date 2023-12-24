@@ -1,4 +1,7 @@
+const SPOTIFY_API = process.env.SPOTIFY_API;
+
 export const SERVER = {
-  /* API Routes */
-  CREATE_GAME: "/api/create-game",
+  /* Spotify Routes */
+  SPOTIFY_PLAYLIST: (playlistId: string) =>
+    `${SPOTIFY_API}/playlists/${playlistId}`,
 };
