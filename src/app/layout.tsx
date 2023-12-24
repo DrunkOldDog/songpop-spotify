@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { Navbar } from "@/layout";
 import { Session, getServerSession } from "next-auth";
 import { ChakraProvider } from "@/lib/chakra";
