@@ -33,9 +33,17 @@ export type Tracks = {
   items: TrackItems;
 };
 
+type PlaylistImage = {
+  /**
+   * Playlist image url
+   */
+  url: string;
+};
+
 export type Playlist = {
   id: string;
   name: string;
   description: string;
-  tracks: Tracks;
+  tracks: Pick<Tracks, 'total'>;
+  images: PlaylistImage[];
 };

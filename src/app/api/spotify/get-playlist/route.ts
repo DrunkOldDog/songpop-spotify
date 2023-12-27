@@ -1,5 +1,6 @@
 import { SERVER } from "@/common/server";
 import { spotifyAxios } from "@/lib/axios/axios";
+import queryString from "query-string";
 
 import { NextResponse, type NextRequest } from "next/server";
 import type { AxiosError } from "axios";
@@ -18,7 +19,14 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const { data } = await spotifyAxios.get(SERVER.SPOTIFY_PLAYLIST(playlistId));
+    const reqUrl = queryString.stringifyUrl({
+      url: SERVER.SPOTIFY_PLAYLIST(playlistId),
+      query: {
+        fields: "id,name,description,images,tracks(total)",
+      },
+    });
+
+    const { data } = await spotifyAxios.get(reqUrl);
     return NextResponse.json(data);
   } catch (error) {
     const typedError = error as AxiosError;
