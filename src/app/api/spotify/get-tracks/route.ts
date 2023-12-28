@@ -1,12 +1,10 @@
+import { TRACKS_DEFAULT_LIMIT } from "@/common/constants";
 import { SERVER } from "@/common/server";
 import { spotifyAxios } from "@/lib/axios/axios";
 import queryString from "query-string";
 
 import { NextResponse, type NextRequest } from "next/server";
 import type { AxiosError } from "axios";
-
-const DEFAULT_LIMIT = 100;
-const DEFAULT_OFFSET = 0;
 
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
@@ -21,8 +19,8 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const limit = requestUrl.searchParams.get("limit") ?? DEFAULT_LIMIT;
-  const offset = requestUrl.searchParams.get("offset") ?? DEFAULT_OFFSET;
+  const limit = Number(process.env.SONGS_LIMIT ?? TRACKS_DEFAULT_LIMIT);
+  const offset = requestUrl.searchParams.get("offset");
 
   try {
     const reqUrl = queryString.stringifyUrl({
