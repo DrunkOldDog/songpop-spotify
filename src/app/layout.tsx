@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Navbar } from "@/layout";
-import { Session, getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 import { ChakraProvider } from "@/lib/chakra";
 import AuthProvider from "@/context/AuthProvider";
 
@@ -23,10 +22,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-          <ChakraProvider>
-            <Navbar {...(session ?? ({} as Session))} />
-            {children}
-          </ChakraProvider>
+          <ChakraProvider>{children}</ChakraProvider>
         </AuthProvider>
       </body>
     </html>

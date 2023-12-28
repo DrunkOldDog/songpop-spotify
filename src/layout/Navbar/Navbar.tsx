@@ -4,15 +4,21 @@ import { Box, Button, Container, Flex, Icon } from "@chakra-ui/react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { User } from "./User";
-import { FaSpotify } from "react-icons/fa";
 import { Session } from "next-auth";
 import { Spotify } from "@/assets/icons";
+import { NAVBAR_HEIGHT } from "@/common/constants";
 
 export const Navbar = ({ user }: Session) => {
   const { push } = useRouter();
 
   return (
-    <Box bgColor={"#000"} height={{ base: "54px", lg: "80px" }}>
+    <Box
+      bgColor={"#000"}
+      height={{
+        base: `${NAVBAR_HEIGHT.BASE}px`,
+        lg: `${NAVBAR_HEIGHT.LARGE}px`,
+      }}
+    >
       <Container height={"100%"}>
         <Flex
           justifyContent={"space-between"}
