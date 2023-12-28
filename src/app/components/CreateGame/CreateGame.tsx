@@ -4,6 +4,7 @@ import { Button, Input } from "@chakra-ui/react";
 import { FormEventHandler, useRef, useState } from "react";
 import { createGame } from "@/app/actions/createGame";
 import { getSession } from "next-auth/react";
+import { getPlaylistIdFromInput } from "@/common/helpers";
 
 export const CreateGame = () => {
   const [loading, setLoading] = useState(false);
@@ -14,8 +15,9 @@ export const CreateGame = () => {
 
     setLoading(true);
     const { user } = (await getSession()) || {};
+
     await createGame({
-      playlistId: playlistInputRef.current?.value ?? "",
+      playlistId: getPlaylistIdFromInput(playlistInputRef.current?.value ?? ""),
       userId: user!.userId,
     });
     setLoading(false);
