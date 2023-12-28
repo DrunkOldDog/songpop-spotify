@@ -7,10 +7,14 @@ import { GameOption } from "./Option";
 interface GameOptionsProps {
   tracks: GameTrack[];
   selectedTrackId: string | null;
-  onSelect: (selectedTrackId: string) => void;
+  onSelect: (selectedTrackId: string, isCorrect: boolean) => void;
 }
 
-export const GameOptions = ({ tracks, selectedTrackId, onSelect }: GameOptionsProps) => {
+export const GameOptions = ({
+  tracks,
+  selectedTrackId,
+  onSelect,
+}: GameOptionsProps) => {
   return (
     <SimpleGrid columns={2} spacing={2} mb={8} width="100%">
       {tracks.map((track) => (
@@ -18,7 +22,7 @@ export const GameOptions = ({ tracks, selectedTrackId, onSelect }: GameOptionsPr
           key={track.id}
           track={track}
           selectedTrackId={selectedTrackId}
-          onSelect={onSelect}
+          onSelect={(trackId) => onSelect(trackId, track.isCurrent)}
         />
       ))}
     </SimpleGrid>
