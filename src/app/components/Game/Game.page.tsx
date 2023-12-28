@@ -7,6 +7,7 @@ import { Playlist } from "../Playlist";
 import { GameOptions } from ".";
 
 import type { Game } from "@/common/types";
+import { getSongScore } from "@/common/helpers";
 
 interface GamePageProps {
   game: Game;
@@ -14,6 +15,8 @@ interface GamePageProps {
 
 const GamePage = ({ game }: GamePageProps) => {
   const audioRef = useRef<HTMLAudioElement>();
+  const startTime = useRef(new Date());
+
   const [score, setScore] = useState(0);
   const [currentRound, setCurrentRound] = useState(-1);
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
@@ -39,7 +42,12 @@ const GamePage = ({ game }: GamePageProps) => {
     setSelectedTrackId(trackId);
 
     if (isCorrect) {
-      setScore(score + 1);
+      const endTime = new Date();
+      const totalTime =
+        (endTime.getTime() - startTime.current.getTime()) / 1000;
+
+      const newSongScore = Math.round(getSongScore(totalTime, 0));
+      setScore(score + newSongScore);
     }
   };
 
@@ -48,6 +56,7 @@ const GamePage = ({ game }: GamePageProps) => {
       return;
     }
 
+    startTime.current = new Date();
     setSelectedTrackId(null);
     setCurrentRound(currentRound + 1);
   };

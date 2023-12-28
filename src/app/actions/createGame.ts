@@ -13,7 +13,7 @@ import { HOST } from "@/common/routes";
 import { getPlaylist } from "./spotify";
 import { getTracks } from "./spotify/getTracks";
 import { getRandomNumFromInterval } from "@/common/helpers";
-import { TRACKS_DEFAULT_LIMIT } from "@/common/constants";
+import { GAME_ROUNDS, TRACKS_DEFAULT_LIMIT } from "@/common/constants";
 
 type CreateGameFunc = (data: {
   playlistId: string;
@@ -69,7 +69,7 @@ const shuffleTracks = (
 };
 
 const getRandomGameTracks = (tracks: TrackItem[]) => {
-  const nRounds = 10; // 10 rounds to play
+  const nRounds = GAME_ROUNDS; // 10 rounds to play
   const trackIndexSet = new Set<number>(); // set to keep track of used songs
   const shuffledTracks: Array<GameTrack[]> = [];
 
