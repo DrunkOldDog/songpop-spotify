@@ -23,15 +23,18 @@ export async function GET(request: NextRequest) {
   const offset = requestUrl.searchParams.get("offset");
 
   try {
-    const reqUrl = queryString.stringifyUrl({
-      url: SERVER.SPOTIFY_PLAYLIST_TRACKS(playlistId),
-      query: {
-        limit,
-        offset,
-        fields:
-          "limit,next,offset,previous,href,total,items(track(id,name,preview_url))",
+    const reqUrl = queryString.stringifyUrl(
+      {
+        url: SERVER.SPOTIFY_PLAYLIST_TRACKS(playlistId),
+        query: {
+          limit,
+          offset,
+          fields:
+            "limit,next,offset,previous,href,total,items(track(id,name,preview_url))",
+        },
       },
-    });
+      { skipNull: true }
+    );
 
     const { data } = await spotifyAxios.get(reqUrl);
     return NextResponse.json(data);
