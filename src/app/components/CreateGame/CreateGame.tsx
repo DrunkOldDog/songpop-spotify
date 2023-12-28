@@ -1,22 +1,24 @@
 "use client";
 
 import { Button, Input } from "@chakra-ui/react";
-import { FormEventHandler, useRef } from "react";
+import { FormEventHandler, useRef, useState } from "react";
 import { createGame } from "@/app/actions/createGame";
 import { getSession } from "next-auth/react";
 
 export const CreateGame = () => {
+  const [loading, setLoading] = useState(false);
   const playlistInputRef = useRef<HTMLInputElement>(null);
 
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
+    setLoading(true);
     const { user } = (await getSession()) || {};
-    const data = await createGame({
+    await createGame({
       playlistId: playlistInputRef.current?.value ?? "",
       userId: user!.userId,
     });
-    console.log({ data });
+    setLoading(false);
   };
 
   return (
@@ -26,7 +28,9 @@ export const CreateGame = () => {
         placeholder="Paste your Spotify Playlist URL"
       />
 
-      <Button type="submit">Create Game</Button>
+      <Button isLoading={loading} type="submit">
+        Create Game
+      </Button>
     </form>
   );
 };
