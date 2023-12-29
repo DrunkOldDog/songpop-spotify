@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 import { refreshToken } from "./refreshToken";
 
-export const authOptions: NextAuthOptions = {
+const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
   secret: process.env.NEXTAUTH_SECRET,
   providers: [
