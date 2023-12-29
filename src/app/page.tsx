@@ -14,10 +14,10 @@ export default async function Home() {
       <Container pt={10}>
         {session ? (
           <>
-            <Heading as="h1">
+            <Heading as="h1" textAlign={"center"} mb={4}>
               Insert your Spotify Playlist Shareable URL to start playing
             </Heading>
-            <Text>
+            <Text mb={4}>
               For instance
               https://open.spotify.com/playlist/11OuS0TQgnaWng2srx0DZv?si=fccb74f4071b4d43
             </Text>

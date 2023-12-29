@@ -28,9 +28,10 @@ export const CreateGame = () => {
       <Input
         ref={playlistInputRef}
         placeholder="Paste your Spotify Playlist URL"
+        mb={6}
       />
 
-      <Button isLoading={loading} type="submit">
+      <Button width={"100%"} isLoading={loading} type="submit">
         Create Game
       </Button>
     </form>
