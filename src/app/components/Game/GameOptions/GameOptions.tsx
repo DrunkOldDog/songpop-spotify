@@ -4,7 +4,7 @@ import { GameTrack } from "@/common/types";
 import { SimpleGrid } from "@chakra-ui/react";
 import { GameOption } from "./Option";
 
-interface GameOptionsProps {
+export interface GameOptionsProps {
   tracks: GameTrack[];
   selectedTrackId: string | null;
   onSelect: (selectedTrackId: string, isCorrect: boolean) => void;

@@ -17,7 +17,7 @@ export const Playlist = ({ playlist }: PlaylistProps) => (
       mb={4}
     />
 
-    <Box mb={8} maxW={360} textAlign="center">
+    <Box maxW={360} textAlign="center">
       <Heading as="h2" size={"lg"}>
         {playlist.name}
       </Heading>

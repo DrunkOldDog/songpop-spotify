@@ -1,13 +1,14 @@
 "use client";
 
-import { Box, Button } from "@chakra-ui/react";
+import { Box, Button, Center } from "@chakra-ui/react";
+import { GAME_ROUNDS, START_ROUND } from "@/common/constants";
+import { getSongScore } from "@/common/helpers";
 import { useEffect, useRef, useState } from "react";
 
 import { Playlist } from "../Playlist";
-import { GameOptions } from ".";
+import { GameBody } from "./GameBody";
 
 import type { Game } from "@/common/types";
-import { getSongScore } from "@/common/helpers";
 
 interface GamePageProps {
   game: Game;
@@ -22,7 +23,8 @@ const GamePage = ({ game }: GamePageProps) => {
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (currentRound === -1) {
+    // added -1 because round start at position 0
+    if (currentRound === START_ROUND - 1 || currentRound > GAME_ROUNDS - 1) {
       return;
     }
 
@@ -52,29 +54,28 @@ const GamePage = ({ game }: GamePageProps) => {
   };
 
   const onNextRound = () => {
-    if (currentRound >= 9) {
-      return;
-    }
-
     startTime.current = new Date();
     setSelectedTrackId(null);
     setCurrentRound(currentRound + 1);
   };
 
   return (
-    <Box>
-      <Playlist playlist={game.playlist} />
-      Score: {score}
-      {currentRound >= 0 && (
-        <GameOptions
+    <Box h={"100vh"}>
+      <Center flexDirection={"column"} h={"100%"} gap={8}>
+        <Playlist playlist={game.playlist} />
+
+        <GameBody
+          score={score}
+          currentRound={currentRound}
           tracks={game.tracks[currentRound]}
           selectedTrackId={selectedTrackId}
           onSelect={onSelect}
         />
-      )}
-      <Button onClick={onNextRound} disabled={currentRound >= 9}>
-        {currentRound >= 0 ? "Next Round" : "Start Game"}
-      </Button>
+
+        <Button onClick={onNextRound} disabled={currentRound >= 9}>
+          {currentRound >= 0 ? "Next Round" : "Start Game"}
+        </Button>
+      </Center>
     </Box>
   );
 };
