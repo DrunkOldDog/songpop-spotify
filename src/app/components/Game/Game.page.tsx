@@ -1,10 +1,13 @@
 "use client";
 
-import { Box, Button, Center } from "@chakra-ui/react";
+import { Box, Center, useFocusEffect } from "@chakra-ui/react";
 import { GAME_ROUNDS, START_ROUND } from "@/common/constants";
 import { getSongScore } from "@/common/helpers";
+import { HOME } from "@/common/routes";
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
+import { GameButtons } from "./GameButtons";
 import { Playlist } from "../Playlist";
 import { GameBody } from "./GameBody";
 
@@ -17,10 +20,16 @@ interface GamePageProps {
 const GamePage = ({ game }: GamePageProps) => {
   const audioRef = useRef<HTMLAudioElement>();
   const startTime = useRef(new Date());
+  const { push } = useRouter();
 
   const [score, setScore] = useState(0);
   const [currentRound, setCurrentRound] = useState(-1);
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
+
+  useEffect(() => {
+    // pause song when returning to home page
+    return () => audioRef.current?.pause();
+  }, []);
 
   useEffect(() => {
     // added -1 because round start at position 0
@@ -72,9 +81,11 @@ const GamePage = ({ game }: GamePageProps) => {
           onSelect={onSelect}
         />
 
-        <Button onClick={onNextRound} disabled={currentRound >= 9}>
-          {currentRound >= 0 ? "Next Round" : "Start Game"}
-        </Button>
+        <GameButtons
+          currentRound={currentRound}
+          onNextRound={onNextRound}
+          onGameFinished={() => push(HOME)}
+        />
       </Center>
     </Box>
   );

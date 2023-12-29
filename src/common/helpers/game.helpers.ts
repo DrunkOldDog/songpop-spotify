@@ -1,4 +1,4 @@
-import { TRACK_PREVIEW_DURATION, GAME_ROUNDS } from "../constants";
+import { TRACK_PREVIEW_DURATION, GAME_ROUNDS, START_ROUND } from "../constants";
 
 export const getPlaylistIdFromInput = (textInput: string) => {
   const regex = /playlist\/(\w+)/;
@@ -23,3 +23,9 @@ export const getSongScore = (time: number, streak: number) => {
   const result = baseScore * multiplier;
   return !Number.isNaN(result) ? result : 0;
 };
+
+export const isGameNotStarted = (currentRound: number) =>
+  currentRound < START_ROUND;
+
+export const isGameFinished = (currentRound: number) =>
+  currentRound >= GAME_ROUNDS;
