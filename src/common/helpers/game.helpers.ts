@@ -14,7 +14,9 @@ export const getPlaylistIdFromInput = (textInput: string) => {
  * @returns score value
  */
 export const getSongScore = (time: number, streak: number) => {
+  streak = streak > 4 ? 4 : streak; // max streak value is 4 to not increase multiplier significatively
   const baseScore = (TRACK_PREVIEW_DURATION - time) * 100;
+
   const multiplier = Math.pow(
     TRACK_PREVIEW_DURATION - time,
     (streak - 1) / GAME_ROUNDS
