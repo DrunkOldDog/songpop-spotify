@@ -23,6 +23,7 @@ const GamePage = ({ game }: GamePageProps) => {
   const { push } = useRouter();
 
   const [score, setScore] = useState(0);
+  const [streak, setStreak] = useState(0);
   const [currentRound, setCurrentRound] = useState(-1);
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
 
@@ -57,8 +58,11 @@ const GamePage = ({ game }: GamePageProps) => {
       const totalTime =
         (endTime.getTime() - startTime.current.getTime()) / 1000;
 
-      const newSongScore = Math.round(getSongScore(totalTime, 0));
-      setScore(score + newSongScore);
+      const newSongScore = Math.round(getSongScore(totalTime, streak));
+      setScore((prevScore) => prevScore + newSongScore);
+      setStreak((prevStreak) => prevStreak + 1);
+    } else {
+      setStreak(0);
     }
   };
 
@@ -75,6 +79,7 @@ const GamePage = ({ game }: GamePageProps) => {
 
         <GameBody
           score={score}
+          streak={streak}
           currentRound={currentRound}
           tracks={game.tracks[currentRound]}
           selectedTrackId={selectedTrackId}
