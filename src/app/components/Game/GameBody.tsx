@@ -22,7 +22,7 @@ export const GameBody = ({
   }
 
   return (
-    <Box>
+    <Box w={"100%"}>
       Score: {score}
       <GameOptions {...gameOptionProps} />
     </Box>

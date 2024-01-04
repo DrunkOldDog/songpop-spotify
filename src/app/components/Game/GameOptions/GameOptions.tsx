@@ -16,7 +16,7 @@ export const GameOptions = ({
   onSelect,
 }: GameOptionsProps) => {
   return (
-    <SimpleGrid columns={2} spacing={2} mb={8} width="100%">
+    <SimpleGrid columns={2} spacing={2} width="100%">
       {tracks.map((track) => (
         <GameOption
           key={track.id}

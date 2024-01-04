@@ -69,7 +69,7 @@ const GamePage = ({ game }: GamePageProps) => {
   };
 
   return (
-    <Box h={"100vh"}>
+    <Box h={"100svh"}>
       <Center flexDirection={"column"} h={"100%"} gap={8}>
         <Playlist playlist={game.playlist} />
 
