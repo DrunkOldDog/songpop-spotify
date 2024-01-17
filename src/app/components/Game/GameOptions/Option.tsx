@@ -27,6 +27,15 @@ export const GameOption = ({
     };
   };
 
+  const onOptionClick = () => {
+    // just trigger on select when no option was picked
+    if (selectedTrackId) {
+      return;
+    }
+
+    onSelect(track.id);
+  };
+
   const styleProps = getGameOptionStyles();
 
   return (
@@ -40,7 +49,7 @@ export const GameOption = ({
       textAlign="center"
       userSelect={"none"}
       p={4}
-      onClick={() => onSelect(track.id)}
+      onClick={onOptionClick}
       {...styleProps}
     >
       <Text noOfLines={2}>{track.name}</Text>

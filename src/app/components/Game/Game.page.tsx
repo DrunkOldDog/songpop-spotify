@@ -1,8 +1,7 @@
 "use client";
 
-import { Box, Center, useFocusEffect } from "@chakra-ui/react";
+import { Box, Center } from "@chakra-ui/react";
 import { GAME_ROUNDS, START_ROUND } from "@/common/constants";
-import { getSongScore } from "@/common/helpers";
 import { HOME } from "@/common/routes";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -22,7 +21,6 @@ const GamePage = ({ game }: GamePageProps) => {
   const startTime = useRef(new Date());
   const { push } = useRouter();
 
-  const [score, setScore] = useState(0);
   const [currentRound, setCurrentRound] = useState(-1);
   const [selectedTrackId, setSelectedTrackId] = useState<string | null>(null);
 
@@ -49,19 +47,6 @@ const GamePage = ({ game }: GamePageProps) => {
     audioRef.current.play();
   }, [game, currentRound]);
 
-  const onSelect = (trackId: string, isCorrect: boolean) => {
-    setSelectedTrackId(trackId);
-
-    if (isCorrect) {
-      const endTime = new Date();
-      const totalTime =
-        (endTime.getTime() - startTime.current.getTime()) / 1000;
-
-      const newSongScore = Math.round(getSongScore(totalTime, 0));
-      setScore(score + newSongScore);
-    }
-  };
-
   const onNextRound = () => {
     startTime.current = new Date();
     setSelectedTrackId(null);
@@ -74,11 +59,11 @@ const GamePage = ({ game }: GamePageProps) => {
         <Playlist playlist={game.playlist} />
 
         <GameBody
-          score={score}
+          startTime={startTime.current}
           currentRound={currentRound}
+          onTrackSelect={setSelectedTrackId}
           tracks={game.tracks[currentRound]}
           selectedTrackId={selectedTrackId}
-          onSelect={onSelect}
         />
 
         <GameButtons

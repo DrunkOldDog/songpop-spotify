@@ -11,6 +11,7 @@
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
     "@chakra-ui/react": "^2.8.2",
+    "@hookform/resolvers": "^3.3.4",
     "axios": "^1.6.2",
     "lodash": "^4.17.21",
     "next": "14.0.4",
@@ -20,9 +21,11 @@
     "query-string": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.49.3",
     "react-icons": "^4.12.0",
     "redis": "^4.6.12",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/node": "^20",
