@@ -95,4 +95,6 @@ Don't forget to give the project a star! Thanks again!
 
 Juani Reyes - [@juanireyesg](https://twitter.com/juanireyesg) - juanireyes182@gmail.com
 
-Project Link: [https://github.com/DrunkOldDog/songpop-spotify](https://github.com/DrunkOldDog/songpop-spotify)
+## Other
+
+Kudos to [othneildrew](https://github.com/othneildrew) for this awesome README template 🚀
