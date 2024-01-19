@@ -1,12 +1,13 @@
-import { chakra } from "@chakra-ui/react";
-import type { SVGProps } from "react";
+import { chakra } from '@chakra-ui/react';
+
+import type { SVGProps } from 'react';
 
 const SpotifyIcon = (props: SVGProps<SVGElement>) => (
   <svg
     viewBox="0 0 63 20"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMin meet"
-    role={"img"}
+    role={'img'}
     {...(props as SVGProps<any>)}
   >
     <g fillRule="evenodd" className="svelte-1gcdbl9">

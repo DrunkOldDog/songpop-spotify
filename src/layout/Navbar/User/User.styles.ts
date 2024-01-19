@@ -1,5 +1,5 @@
-import { MenuButton as ChakraMenuButton } from "@chakra-ui/react";
-import styled from "@emotion/styled";
+import { MenuButton as ChakraMenuButton } from '@chakra-ui/react';
+import styled from '@emotion/styled';
 
 const MenuButton = styled(ChakraMenuButton)`
   color: #fff;

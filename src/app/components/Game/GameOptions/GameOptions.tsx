@@ -1,8 +1,10 @@
-"use client";
+'use client';
 
-import { GameTrack } from "@/common/types";
-import { SimpleGrid } from "@chakra-ui/react";
-import { GameOption } from "./Option";
+import { SimpleGrid } from '@chakra-ui/react';
+
+import { GameTrack } from '@/common/types';
+
+import { GameOption } from './Option';
 
 export interface GameOptionsProps {
   tracks: GameTrack[];

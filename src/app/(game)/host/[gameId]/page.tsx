@@ -1,5 +1,5 @@
-import { getGame } from "@/app/actions/getGame";
-import GamePage from "@/app/components/Game";
+import { getGame } from '@/app/actions/getGame';
+import GamePage from '@/app/components/Game';
 
 interface HostProps {
   params: { gameId: string };

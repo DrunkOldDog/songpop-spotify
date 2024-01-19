@@ -1,6 +1,6 @@
-import type { DefaultSession } from "next-auth";
+import type { DefaultSession } from 'next-auth';
 
-type JWTError = "RefreshAccessTokenError";
+type JWTError = 'RefreshAccessTokenError';
 
 interface IJWT {
   accessToken: string | undefined;
@@ -12,7 +12,7 @@ interface IJWT {
   error?: JWTError;
 }
 
-declare module "next-auth" {
+declare module 'next-auth' {
   interface User {
     userId: string;
   }
@@ -23,6 +23,6 @@ declare module "next-auth" {
   }
 }
 
-declare module "next-auth/jwt" {
+declare module 'next-auth/jwt' {
   interface JWT extends IJWT {}
 }

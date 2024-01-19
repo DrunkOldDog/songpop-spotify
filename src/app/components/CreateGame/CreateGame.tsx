@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Button,
@@ -6,16 +6,18 @@ import {
   FormErrorMessage,
   Input,
   useToast,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { createGame } from "@/app/actions/createGame";
-import { getSession } from "next-auth/react";
-import { getPlaylistIdFromInput } from "@/common/helpers";
-import { createGameSchema } from "./CreateGame.schema";
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import { getSession } from 'next-auth/react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-import type { AxiosError } from "axios";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { createGame } from '@/app/actions/createGame';
+import { getPlaylistIdFromInput } from '@/common/helpers';
+
+import { createGameSchema } from './CreateGame.schema';
+
+import type { AxiosError } from 'axios';
 
 type Inputs = { playlistUrl: string };
 
@@ -43,9 +45,9 @@ export const CreateGame = () => {
     } catch (err) {
       const error = err as AxiosError;
       toast({
-        title: "Something went wrong",
+        title: 'Something went wrong',
         description: error.message,
-        status: "error",
+        status: 'error',
         isClosable: true,
       });
     }
@@ -57,7 +59,7 @@ export const CreateGame = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl mb={6} isInvalid={Boolean(errors.playlistUrl)}>
         <Input
-          {...register("playlistUrl", { required: true })}
+          {...register('playlistUrl', { required: true })}
           placeholder="Paste your Spotify Playlist URL"
         />
         {errors.playlistUrl && (
@@ -65,7 +67,7 @@ export const CreateGame = () => {
         )}
       </FormControl>
 
-      <Button width={"100%"} isLoading={loading} type="submit">
+      <Button width={'100%'} isLoading={loading} type="submit">
         Create Game
       </Button>
     </form>

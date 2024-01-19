@@ -1,9 +1,9 @@
-import { TRACK_PREVIEW_DURATION, GAME_ROUNDS, START_ROUND } from "../constants";
+import { TRACK_PREVIEW_DURATION, GAME_ROUNDS, START_ROUND } from '../constants';
 
 export const getPlaylistIdFromInput = (textInput: string) => {
   const regex = /playlist\/(\w+)/;
   const regexResult = regex.exec(textInput)?.[1];
-  return regexResult ?? "";
+  return regexResult ?? '';
 };
 
 /**

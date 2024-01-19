@@ -1,8 +1,10 @@
-import { Container, Heading, Text } from "@chakra-ui/react";
-import { getServerSession } from "next-auth";
-import { CreateGame } from "@/app/components/CreateGame";
-import { Navbar } from "@/layout";
-import type { Session } from "next-auth";
+import { Container, Heading, Text } from '@chakra-ui/react';
+import { getServerSession } from 'next-auth';
+
+import { CreateGame } from '@/app/components/CreateGame';
+import { Navbar } from '@/layout';
+
+import type { Session } from 'next-auth';
 
 export default async function Home() {
   const session = await getServerSession();
@@ -14,7 +16,7 @@ export default async function Home() {
       <Container pt={10}>
         {session ? (
           <>
-            <Heading as="h1" textAlign={"center"} mb={4}>
+            <Heading as="h1" textAlign={'center'} mb={4}>
               Insert your Spotify Playlist Shareable URL to start playing
             </Heading>
             <Text mb={4}>

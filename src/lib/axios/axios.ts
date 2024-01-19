@@ -1,25 +1,25 @@
-import axios, { InternalAxiosRequestConfig } from "axios";
+import axios, { InternalAxiosRequestConfig } from 'axios';
 
-const isServer = typeof window === "undefined";
+const isServer = typeof window === 'undefined';
 
 const mainAxios = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL + "/api",
+  baseURL: process.env.NEXT_PUBLIC_API_URL + '/api',
 });
 
 const spotifyAxios = axios.create({
   baseURL: process.env.SPOTIFY_API,
   headers: {
-    "Content-Type": "application/json",
+    'Content-Type': 'application/json',
   },
 });
 
 const authorizationInterceptor = async (config: InternalAxiosRequestConfig) => {
   if (isServer) {
-    const { headers } = await import("next/headers"),
-      authorization = headers().get("authorization");
+    const { headers } = await import('next/headers'),
+      authorization = headers().get('authorization');
 
     if (authorization) {
-      config.headers["Authorization"] = authorization;
+      config.headers['Authorization'] = authorization;
     }
   }
 

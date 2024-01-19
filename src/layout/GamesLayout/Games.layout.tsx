@@ -1,9 +1,8 @@
-"use client";
+'use client';
 
-import { NAVBAR_HEIGHT } from "@/common/constants";
-import { Box, Container } from "@chakra-ui/react";
+import { Box, Container } from '@chakra-ui/react';
 
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 interface GamesLayoutProps {
   children: ReactNode;
@@ -11,11 +10,7 @@ interface GamesLayoutProps {
 
 export const GamesLayout = ({ children }: GamesLayoutProps) => {
   return (
-    <Box
-      backgroundColor={"blackAlpha.900"}
-      color="#fff"
-      height={'100vh'}
-    >
+    <Box backgroundColor={'blackAlpha.900'} color="#fff" height={'100vh'}>
       <Container>{children}</Container>
     </Box>
   );

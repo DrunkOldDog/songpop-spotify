@@ -1,6 +1,7 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
-import SpotifyProvider from "next-auth/providers/spotify";
-import { refreshToken } from "./refreshToken";
+import NextAuth, { NextAuthOptions } from 'next-auth';
+import SpotifyProvider from 'next-auth/providers/spotify';
+
+import { refreshToken } from './refreshToken';
 
 const authOptions: NextAuthOptions = {
   // Configure one or more authentication providers
@@ -16,7 +17,7 @@ const authOptions: NextAuthOptions = {
     async session({ session, token }) {
       if (session) {
         session.error = token.error;
-        session.user!.userId = token.sub ?? "";
+        session.user!.userId = token.sub ?? '';
       }
 
       return session;
@@ -38,7 +39,7 @@ const authOptions: NextAuthOptions = {
       }
 
       try {
-        console.log("refreshing token...");
+        console.log('refreshing token...');
         const { access_token, expires_in } = await refreshToken(
           token.refreshToken as string
         );
@@ -49,9 +50,9 @@ const authOptions: NextAuthOptions = {
           expiresAt: Math.floor(Date.now() / 1000) + expires_in,
         };
       } catch (error) {
-        console.error("Error refreshing access token", error);
+        console.error('Error refreshing access token', error);
         // The error property will be used client-side to handle the refresh token error
-        return { ...token, error: "RefreshAccessTokenError" as const };
+        return { ...token, error: 'RefreshAccessTokenError' as const };
       }
     },
   },

@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { Box, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Heading, Image, Text } from '@chakra-ui/react';
 
-import type { Playlist as PlaylistType } from "@/common/types";
+import type { Playlist as PlaylistType } from '@/common/types';
 
 interface PlaylistProps {
   playlist: PlaylistType;
 }
 
 export const Playlist = ({ playlist }: PlaylistProps) => (
-  <Box display={"flex"} flexDir={"column"} alignItems={"center"}>
+  <Box display={'flex'} flexDir={'column'} alignItems={'center'}>
     <Image
       alt={playlist.name}
       src={playlist.images[0].url}
@@ -18,7 +18,7 @@ export const Playlist = ({ playlist }: PlaylistProps) => (
     />
 
     <Box maxW={360} textAlign="center">
-      <Heading as="h2" size={"lg"}>
+      <Heading as="h2" size={'lg'}>
         {playlist.name}
       </Heading>
       <Text>{playlist.description}</Text>

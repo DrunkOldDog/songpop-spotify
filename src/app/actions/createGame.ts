@@ -1,19 +1,18 @@
-"use server";
+'use server';
 
-import { v4 as uuidv4 } from "uuid";
-import { client } from "@/lib/redis/db";
-import {
-  type Game,
-  GameStatus,
-  type TrackItem,
-  GameTrack,
-} from "@/common/types";
-import { redirect } from "next/navigation";
-import { HOST } from "@/common/routes";
-import { getPlaylist } from "./spotify";
-import { getTracks } from "./spotify/getTracks";
-import { getRandomNumFromInterval } from "@/common/helpers";
-import { GAME_ROUNDS, TRACKS_DEFAULT_LIMIT } from "@/common/constants";
+import { v4 as uuidv4 } from 'uuid';
+import { redirect } from 'next/navigation';
+
+import { client } from '@/lib/redis/db';
+import { GameStatus, GameTrack } from '@/common/types';
+import { HOST } from '@/common/routes';
+import { getRandomNumFromInterval } from '@/common/helpers';
+import { GAME_ROUNDS, TRACKS_DEFAULT_LIMIT } from '@/common/constants';
+
+import { getPlaylist } from './spotify';
+import { getTracks } from './spotify/getTracks';
+
+import type { Game, TrackItem } from '@/common/types';
 
 type CreateGameFunc = (data: {
   playlistId: string;
@@ -95,7 +94,7 @@ export const createGame: CreateGameFunc = async ({ playlistId, userId }) => {
   };
 
   const gameId = uuidv4();
-  await client.json.set(`games:${gameId}`, "$", game);
+  await client.json.set(`games:${gameId}`, '$', game);
   await client.expire(`games:${gameId}`, 60 * 30);
 
   redirect(`${HOST}/${gameId}`);

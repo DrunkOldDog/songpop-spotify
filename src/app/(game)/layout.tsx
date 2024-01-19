@@ -1,6 +1,6 @@
-import { GamesLayout } from "@/layout/GamesLayout";
+import { GamesLayout } from '@/layout/GamesLayout';
 
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react';
 
 interface GamesLayoutProps {
   children: ReactNode;

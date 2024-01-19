@@ -1,4 +1,4 @@
-import type { GameStatus, Playlist, TrackItem } from ".";
+import type { GameStatus, Playlist, TrackItem } from '.';
 
 export type GameTrack = TrackItem & {
   isCurrent: boolean;
