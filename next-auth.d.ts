@@ -1,8 +1,9 @@
+/* eslint-disable unused-imports/no-unused-vars */
 import type { DefaultSession } from 'next-auth';
 
 type JWTError = 'RefreshAccessTokenError';
 
-interface IJWT {
+interface CustomJWT {
   accessToken: string | undefined;
   refreshToken: string | undefined;
   /**
@@ -24,5 +25,5 @@ declare module 'next-auth' {
 }
 
 declare module 'next-auth/jwt' {
-  interface JWT extends IJWT {}
+  interface JWT extends CustomJWT {}
 }
