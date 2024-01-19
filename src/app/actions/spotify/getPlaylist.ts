@@ -1,10 +1,10 @@
-"use server";
+'use server';
 
-import { SERVER } from "@/common/server";
-import { mainAxios } from "@/lib/axios/axios";
+import { SERVER } from '@/common/server';
+import { mainAxios } from '@/lib/axios/axios';
 
-import type { Playlist } from "@/common/types";
-import type { AxiosError } from "axios";
+import type { Playlist } from '@/common/types';
+import type { AxiosError } from 'axios';
 
 export const getPlaylist = async (playlistId: string) => {
   try {

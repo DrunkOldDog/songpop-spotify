@@ -12,7 +12,7 @@
 
 <br />
 
-## About The Project 
+## About The Project
 
 <div align="center">
   <img width="320" alt="image" src="https://github.com/DrunkOldDog/songpop-spotify/assets/21226219/48f40658-cc37-4c7b-aee2-0b7b82866905">
@@ -23,7 +23,6 @@ I guess most of us are familiar with [Songpop](https://en.wikipedia.org/wiki/Son
 
 Unfortunately, this API is not too kind with _Games/Trivias_, so that's why you will need your own keys to make it work with your account. However, I will do my best to help you ease this steps!
 
-
 ## Getting Started
 
 ### Prerequisites
@@ -31,6 +30,7 @@ Unfortunately, this API is not too kind with _Games/Trivias_, so that's why you 
 This project uses Spotify API and Redis on the background. So you will need some _API KEYS_ to make it work.
 
 Here are some docs so you can get your own:
+
 - [Getting started with Spotify Web API](https://developer.spotify.com/documentation/web-api/tutorials/getting-started)
 - [Create a Redis Cloud Database](https://docs.redis.com/latest/rc/databases/create-database/)
 
@@ -62,7 +62,6 @@ Finally, start the development environment.
 ```bash
 npm run dev
 ```
-
 
 With this, you'll be damn ready to run the app locally. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

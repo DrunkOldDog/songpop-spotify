@@ -1,1 +1,1 @@
-export * from "./Games.layout";
+export * from './Games.layout';

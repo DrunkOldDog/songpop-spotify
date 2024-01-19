@@ -1,2 +1,2 @@
-export * from "./game.helpers";
-export * from "./math.helpers";
+export * from './game.helpers';
+export * from './math.helpers';

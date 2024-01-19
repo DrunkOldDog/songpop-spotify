@@ -1,5 +1,5 @@
-import { getToken } from "next-auth/jwt";
-import { NextResponse, type NextRequest } from "next/server";
+import { getToken } from 'next-auth/jwt';
+import { NextResponse, type NextRequest } from 'next/server';
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request: NextRequest) {
@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
 
   // Clone the request headers and set a new header `authorization`
   const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("authorization", `Bearer ${token.accessToken}`);
+  requestHeaders.set('authorization', `Bearer ${token.accessToken}`);
 
   const resp = NextResponse.next({
     request: {
@@ -18,7 +18,7 @@ export async function middleware(request: NextRequest) {
     },
   });
 
-  resp.headers.set("authorization", `Bearer ${token.accessToken}`);
+  resp.headers.set('authorization', `Bearer ${token.accessToken}`);
   return resp;
 }
 
@@ -33,6 +33,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    '/((?!api|_next/static|_next/image|favicon.ico).*)',
   ],
 };

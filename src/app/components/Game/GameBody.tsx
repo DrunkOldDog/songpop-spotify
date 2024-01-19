@@ -1,14 +1,17 @@
-import { Score } from "./Score";
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
-import { GameOptions, type GameOptionsProps } from ".";
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
+import { useState } from 'react';
+
 import {
   getSongScore,
   isGameFinished,
   isGameNotStarted,
-} from "@/common/helpers";
-import { useState } from "react";
+} from '@/common/helpers';
 
-interface GameBodyProps extends Omit<GameOptionsProps, "onSelect"> {
+import { Score } from './Score';
+
+import { GameOptions, type GameOptionsProps } from '.';
+
+interface GameBodyProps extends Omit<GameOptionsProps, 'onSelect'> {
   startTime: Date;
   currentRound: number;
   onTrackSelect: (trackId: string) => void;
@@ -47,10 +50,10 @@ export const GameBody = ({
   };
 
   return (
-    <Box w={"100%"}>
-      <Flex justifyContent={"space-between"}>
+    <Box w={'100%'}>
+      <Flex justifyContent={'space-between'}>
         <Text>Score: {score}</Text>
-        {streak > 0 && <Text fontWeight={"bold"}>{streak} 🔥</Text>}
+        {streak > 0 && <Text fontWeight={'bold'}>{streak} 🔥</Text>}
       </Flex>
 
       <GameOptions {...gameOptionProps} onSelect={onSelect} />

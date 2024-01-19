@@ -1,1 +1,1 @@
-export * from "./Spotify";
+export * from './Spotify';

@@ -1,7 +1,7 @@
-import { Center, CenterProps, Text } from "@chakra-ui/react";
-import { isNil } from "lodash";
+import { Center, CenterProps, Text } from '@chakra-ui/react';
+import { isNil } from 'lodash';
 
-import type { GameTrack } from "@/common/types";
+import type { GameTrack } from '@/common/types';
 
 interface GameOptionProps {
   track: GameTrack;
@@ -17,13 +17,13 @@ export const GameOption = ({
   const getGameOptionStyles = (): CenterProps => {
     if (isNil(selectedTrackId)) {
       return {
-        backgroundColor: "gray.700",
-        _hover: { backgroundColor: "gray.800" },
+        backgroundColor: 'gray.700',
+        _hover: { backgroundColor: 'gray.800' },
       };
     }
 
     return {
-      backgroundColor: track.isCurrent ? "green.400" : "red.500",
+      backgroundColor: track.isCurrent ? 'green.400' : 'red.500',
     };
   };
 
@@ -40,14 +40,14 @@ export const GameOption = ({
 
   return (
     <Center
-      fontWeight={"semibold"}
+      fontWeight={'semibold'}
       borderWidth={2}
-      borderRadius={"md"}
+      borderRadius={'md'}
       height={20}
       cursor="pointer"
-      color={"white"}
+      color={'white'}
       textAlign="center"
-      userSelect={"none"}
+      userSelect={'none'}
       p={4}
       onClick={onOptionClick}
       {...styleProps}

@@ -8,27 +8,28 @@ import {
   Text,
   Wrap,
   WrapItem,
-} from "@chakra-ui/react";
-import { FaCaretDown } from "react-icons/fa";
-import { signOut, useSession } from "next-auth/react";
-import { Styled } from "./User.styles";
-import { Session } from "next-auth";
+} from '@chakra-ui/react';
+import { FaCaretDown } from 'react-icons/fa';
+import { signOut } from 'next-auth/react';
+import { Session } from 'next-auth';
+
+import { Styled } from './User.styles';
 
 export const User = (user: Session['user']) => {
   return (
     <Menu>
       <Styled.MenuButton>
-        <Wrap align={"center"}>
+        <Wrap align={'center'}>
           <WrapItem>
             <Avatar
-              name={user!.name ?? ""}
-              src={user!.image ?? ""}
-              size={{ base: "sm", lg: "md" }}
+              name={user!.name ?? ''}
+              src={user!.image ?? ''}
+              size={{ base: 'sm', lg: 'md' }}
             />
           </WrapItem>
           <Hide below="lg">
             <WrapItem>
-              <Text fontWeight={"bold"} transition="200ms">
+              <Text fontWeight={'bold'} transition="200ms">
                 Profile
               </Text>
             </WrapItem>

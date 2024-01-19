@@ -1,4 +1,4 @@
-import { createClient } from "redis";
+import { createClient } from 'redis';
 
 // Singleton approach based on:
 // https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices
@@ -19,11 +19,11 @@ const redisClientSingleton = () => {
 
 const client = globalThis.redisClient ?? redisClientSingleton();
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== 'production') {
   globalThis.redisClient = client;
 }
 
-client.on("error", (err) => console.error(err));
+client.on('error', (err) => console.error(err));
 
 if (!client.isOpen) {
   client.connect();

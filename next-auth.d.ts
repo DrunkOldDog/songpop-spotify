@@ -1,8 +1,9 @@
-import type { DefaultSession } from "next-auth";
+/* eslint-disable unused-imports/no-unused-vars */
+import type { DefaultSession } from 'next-auth';
 
-type JWTError = "RefreshAccessTokenError";
+type JWTError = 'RefreshAccessTokenError';
 
-interface IJWT {
+interface CustomJWT {
   accessToken: string | undefined;
   refreshToken: string | undefined;
   /**
@@ -12,7 +13,7 @@ interface IJWT {
   error?: JWTError;
 }
 
-declare module "next-auth" {
+declare module 'next-auth' {
   interface User {
     userId: string;
   }
@@ -23,6 +24,6 @@ declare module "next-auth" {
   }
 }
 
-declare module "next-auth/jwt" {
-  interface JWT extends IJWT {}
+declare module 'next-auth/jwt' {
+  interface JWT extends CustomJWT {}
 }

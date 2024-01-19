@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { getSession, signIn, useSession } from "next-auth/react";
-import { useEffect, type ReactNode, useRef } from "react";
+import { getSession, signIn, useSession } from 'next-auth/react';
+import { useEffect, type ReactNode, useRef } from 'react';
 
 interface AuthProviderProps {
   children?: ReactNode;
@@ -26,8 +26,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   useEffect(() => {
-    if (session?.error === "RefreshAccessTokenError") {
-      console.error("RefreshAccessTokenError: Forcing sign in...");
+    if (session?.error === 'RefreshAccessTokenError') {
+      console.error('RefreshAccessTokenError: Forcing sign in...');
       signIn(); // Force sign in to hopefully resolve error
     }
   }, [session]);

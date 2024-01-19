@@ -1,9 +1,9 @@
-"use server";
+'use server';
 
-import { SERVER } from "@/common/server";
-import { mainAxios } from "@/lib/axios/axios";
+import { SERVER } from '@/common/server';
+import { mainAxios } from '@/lib/axios/axios';
 
-import type { TrackItem, Tracks } from "@/common/types";
+import type { TrackItem, Tracks } from '@/common/types';
 
 type GetTracks = (playlistId: string, offset?: number) => Promise<TrackItem[]>;
 

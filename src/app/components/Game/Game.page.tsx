@@ -1,16 +1,18 @@
-"use client";
+'use client';
 
-import { Box, Center } from "@chakra-ui/react";
-import { GAME_ROUNDS, START_ROUND } from "@/common/constants";
-import { HOME } from "@/common/routes";
-import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { Box, Center } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
-import { GameButtons } from "./GameButtons";
-import { Playlist } from "../Playlist";
-import { GameBody } from "./GameBody";
+import { GAME_ROUNDS, START_ROUND } from '@/common/constants';
+import { HOME } from '@/common/routes';
 
-import type { Game } from "@/common/types";
+import { Playlist } from '../Playlist';
+
+import { GameButtons } from './GameButtons';
+import { GameBody } from './GameBody';
+
+import type { Game } from '@/common/types';
 
 interface GamePageProps {
   game: Game;
@@ -54,8 +56,8 @@ const GamePage = ({ game }: GamePageProps) => {
   };
 
   return (
-    <Box h={"100svh"}>
-      <Center flexDirection={"column"} h={"100%"} gap={8}>
+    <Box h={'100svh'}>
+      <Center flexDirection={'column'} h={'100%'} gap={8}>
         <Playlist playlist={game.playlist} />
 
         <GameBody

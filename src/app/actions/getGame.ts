@@ -1,8 +1,10 @@
-"use server";
+'use server';
 
-import { client } from "@/lib/redis/db";
-import type { Game } from "@/common/types";
-import { isEmpty } from "lodash";
+import { isEmpty } from 'lodash';
+
+import { client } from '@/lib/redis/db';
+
+import type { Game } from '@/common/types';
 
 type GetGameFunc = (gameId: string) => Promise<Game>;
 

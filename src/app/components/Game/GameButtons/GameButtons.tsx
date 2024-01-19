@@ -1,5 +1,6 @@
-import { isGameFinished, isGameNotStarted } from "@/common/helpers";
-import { Button, HStack } from "@chakra-ui/react";
+import { Button, HStack } from '@chakra-ui/react';
+
+import { isGameFinished, isGameNotStarted } from '@/common/helpers';
 
 interface GameButtonsProps {
   currentRound: number;
@@ -14,14 +15,14 @@ export const GameButtons = ({
 }: GameButtonsProps) => {
   const getActionBtnLabel = () => {
     if (isGameNotStarted(currentRound)) {
-      return "Start Game";
+      return 'Start Game';
     }
 
     if (isGameFinished(currentRound)) {
-      return "Finish Game";
+      return 'Finish Game';
     }
 
-    return "Next Round";
+    return 'Next Round';
   };
 
   return (

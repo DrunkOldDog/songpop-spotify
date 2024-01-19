@@ -1,2 +1,2 @@
-export * from "./GameOptions";
-export { default } from "./Game.page";
+export * from './GameOptions';
+export { default } from './Game.page';
